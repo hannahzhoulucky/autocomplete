@@ -42,6 +42,7 @@ export interface AutocompleteSettings<T extends AutocompleteItem> {
      * This method will be called when user choose an item in autocomplete. The selected item will be passed as the first parameter.
      */
     onSelect: (item: T, input: HTMLInputElement) => void;
+    postSelect: (item: T, startFetch: (trigger: EventTrigger) => void) => void;
     /**
      * Show autocomplete on focus event. Focus event will ignore the `minLength` property and will always call `fetch`.
      */
