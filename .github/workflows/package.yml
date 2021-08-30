@@ -2,14 +2,21 @@
 
 name: package
 
+on: 
+  workflow_dispatch:
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "package"
  package:
     runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: npm install
+      run: npm install      
     - name: Npm build js and css
-      run: npm run build
+      run: npm run build      
+    - name: Npm publish version
+      run: npm publish --access public
